@@ -56,8 +56,8 @@ class UserController extends Controller
 
             return response()->json([
 
-                "status"=>1,
-                "msg"=>"!usuario ingresado exitosamente!",
+                "status"=>"okay",
+                "msg"=>"!ingreso exitoso!",
                 "acces_token" => $token 
             ]);
 
@@ -72,9 +72,19 @@ class UserController extends Controller
     }
     }
     public function userProfile (){
-        
+        return response()->json([
+
+            "status"=>10,
+            "msg"=>"!Acerca del perfil de usario!",
+            "data" => auth()->user()
+        ]);
     }
-    public function logout (){
-        
-    }
+    public function logaut (){
+        auth()->user()->tokens()->delete();
+        return response()->json([
+            "status"=>1,
+            "msg"=>"!Cierre de secion!",
+            
+        ]);
+    } 
 }
